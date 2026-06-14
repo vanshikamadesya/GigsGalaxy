@@ -1,0 +1,11 @@
+// ── Quasar CSS ────────────────────────────────────────────────
+// quasar.variables.scss is picked up automatically by Quasar
+// before compiling quasar/src/css/index.sass, so color overrides
+// are already applied. Do NOT redeclare $primary etc. here.
+@import 'quasar/src/css/index.sass';
+
+// ── Application styles ────────────────────────────────────────
+// Use @import (legacy) so that app.scss stays in legacy mode
+// and does not conflict with the @use inside the individual files.
+@import 'src/styles/variables';
+@import 'src/styles/global';

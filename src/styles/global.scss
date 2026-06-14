@@ -1,0 +1,299 @@
+// Imported via legacy @import from app.scss – use @import here too
+@import './variables';
+
+// ============================================================
+// Global Styles – Gig Galaxy
+// ============================================================
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --gg-primary:     #{$primary};
+  --gg-secondary:   #{$secondary};
+  --gg-accent:      #{$accent};
+  --gg-bg:          #{$bg-light};
+  --gg-surface:     #{$surface};
+  --gg-text:        #{$text-primary};
+  --gg-text-muted:  #{$text-muted};
+  --gg-border:      #{$border-color};
+  --gg-shadow:      #{$shadow-md};
+}
+
+/* Dark mode CSS variable overrides when Quasar applies .body--dark */
+.body--dark {
+  --gg-bg: #{$bg-dark};
+  --gg-surface: #{$surface-dark};
+  --gg-text: #{$text-white};
+  --gg-text-muted: #{$text-light};
+  --gg-border: #{$border-color-dark};
+}
+
+body {
+  font-family: $font-primary;
+  background-color: var(--gg-bg);
+  color: var(--gg-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ──────────────────────────────────────────
+// Utility Classes
+// ──────────────────────────────────────────
+
+.gradient-primary { background: $gradient-primary; }
+.gradient-hero    { background: $gradient-hero; }
+
+.text-gradient {
+  background: $gradient-primary;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: $glass-bg;
+  backdrop-filter: blur($glass-blur);
+  -webkit-backdrop-filter: blur($glass-blur);
+  border: 1px solid $glass-border;
+  border-radius: $radius-lg;
+}
+
+.card-hover {
+  transition: transform $transition-base, box-shadow $transition-base;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-xl;
+  }
+}
+
+.gg-card {
+  background: $surface;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-color;
+  transition: box-shadow $transition-base, transform $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+  }
+}
+
+// ──────────────────────────────────────────
+// Skeleton Loaders
+// ──────────────────────────────────────────
+
+.skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-wave 1.5s infinite;
+  border-radius: $radius-sm;
+}
+
+@keyframes skeleton-wave {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+// ──────────────────────────────────────────
+// Animations
+// ──────────────────────────────────────────
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+.animate-fade-in  { animation: fadeIn 0.3s ease forwards; }
+.animate-slide-in { animation: slideInLeft 0.3s ease forwards; }
+.animate-scale-in { animation: scaleIn 0.25s ease forwards; }
+.animate-pulse    { animation: pulse 2s ease-in-out infinite; }
+.animate-bounce   { animation: bounce 1s ease-in-out infinite; }
+
+// ──────────────────────────────────────────
+// Button Overrides
+// ──────────────────────────────────────────
+
+.btn-primary {
+  background: $gradient-primary !important;
+  color: white !important;
+  border-radius: $radius-md !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  box-shadow: 0 4px 14px rgba(91, 33, 182, 0.3) !important;
+  transition: all $transition-base !important;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(91, 33, 182, 0.4) !important;
+  }
+}
+
+.btn-outline {
+  border: 2px solid $primary !important;
+  color: $primary !important;
+  background: transparent !important;
+  border-radius: $radius-md !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  transition: all $transition-base !important;
+
+  &:hover {
+    background: rgba(91, 33, 182, 0.05) !important;
+  }
+}
+
+// ──────────────────────────────────────────
+// Form Overrides
+// ──────────────────────────────────────────
+
+.q-field--filled .q-field__control {
+  border-radius: $radius-md !important;
+}
+
+.q-field--outlined .q-field__control {
+  border-radius: $radius-md !important;
+}
+
+// ──────────────────────────────────────────
+// Scrollbar
+// ──────────────────────────────────────────
+
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  {
+  background: rgba(91, 33, 182, 0.3);
+  border-radius: 3px;
+  &:hover { background: rgba(91, 33, 182, 0.5); }
+}
+
+// ──────────────────────────────────────────
+// Dark Mode Overrides
+// ──────────────────────────────────────────
+
+.body--dark {
+  .gg-card {
+    background: $surface-dark;
+    border-color: $border-color-dark;
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #1a1a2e 25%, #2d2d44 50%, #1a1a2e 75%);
+    background-size: 200% 100%;
+  }
+}
+
+/* Make icons and SVGs inherit text color and be visible in both themes */
+:deep(.q-icon), svg {
+  color: var(--gg-text) !important;
+  fill: currentColor !important;
+}
+
+/* Ensure image icons inside buttons are not inverted or filtered */
+:deep(.q-btn img) {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Form placeholders and inputs inherit readable colors */
+input, textarea, .q-field__native {
+  color: inherit !important;
+}
+::placeholder { color: var(--gg-text-muted) !important; }
+
+// ──────────────────────────────────────────
+// Tags
+// ──────────────────────────────────────────
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: 500;
+  background: rgba(91, 33, 182, 0.08);
+  color: $primary;
+  border: 1px solid rgba(91, 33, 182, 0.2);
+}
+
+// ──────────────────────────────────────────
+// Page Wrappers
+// ──────────────────────────────────────────
+
+.page-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @media (max-width: $bp-sm) {
+    padding: 0 $spacing-md;
+  }
+}
+
+.section {
+  padding: $spacing-3xl 0;
+  @media (max-width: $bp-md) { padding: $spacing-2xl 0; }
+}
+
+.section-title {
+  font-size: $font-size-3xl;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+  @media (max-width: $bp-md) { font-size: $font-size-2xl; }
+}
+
+.section-subtitle {
+  font-size: $font-size-lg;
+  color: $text-secondary;
+  margin-bottom: $spacing-2xl;
+}
+
+// ──────────────────────────────────────────
+// Status Badges
+// ──────────────────────────────────────────
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: $radius-full;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &--pending     { background: rgba(245, 158, 11, 0.1); color: #b45309; }
+  &--accepted    { background: rgba(59, 130, 246, 0.1); color: #1d4ed8; }
+  &--in_progress { background: rgba(91, 33, 182, 0.1);  color: $primary; }
+  &--delivered   { background: rgba(20, 184, 166, 0.1); color: #0f766e; }
+  &--completed   { background: rgba(34, 197, 94, 0.1);  color: #15803d; }
+  &--cancelled   { background: rgba(239, 68, 68, 0.1);  color: #dc2626; }
+}

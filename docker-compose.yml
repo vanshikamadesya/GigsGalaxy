@@ -1,0 +1,39 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: gig-galaxy-backend
+    volumes:
+      - ./backend:/app/backend
+      - /app/backend/node_modules
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/.env
+    networks:
+      - gig-galaxy-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gig-galaxy-frontend
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.quasar
+    ports:
+      - "9000:9000"
+    environment:
+      - DOCKER_ENV=true
+    env_file:
+      - .env
+    depends_on:
+      - backend
+    networks:
+      - gig-galaxy-network
+
+networks:
+  gig-galaxy-network:
+    driver: bridge

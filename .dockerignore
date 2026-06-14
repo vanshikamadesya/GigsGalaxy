@@ -1,0 +1,9 @@
+node_modules
+.quasar
+dist
+.env
+*.log
+backend
+.git
+.vscode
+.cursor

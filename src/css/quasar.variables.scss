@@ -1,0 +1,12 @@
+// ── Quasar color variable overrides ──────────────────────────
+// This file is loaded by Quasar's build system before quasar/src/css/index.sass
+// so these bare variables override Quasar's defaults.
+// Do NOT use @use/@forward here – Quasar's sass pipeline uses legacy @import.
+
+$primary:   #5B21B6;
+$secondary: #8B5CF6;
+$accent:    #14B8A6;
+$positive:  #22C55E;
+$warning:   #F59E0B;
+$negative:  #EF4444;
+$info:      #3B82F6;

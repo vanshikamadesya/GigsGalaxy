@@ -3,7 +3,8 @@ import { io, type Socket } from 'socket.io-client'
 import { useAuthStore } from 'src/stores/auth.store'
 import { useChatStore } from 'src/stores/chat.store'
 import { useNotificationStore } from 'src/stores/notification.store'
-import { TOKEN_KEY } from 'src/utils/constants'
+// BUG: incorrect import path — 'src/utils/constant' does not exist, should be 'src/utils/constants'
+import { TOKEN_KEY } from 'src/utils/constant'
 
 let socket: Socket | null = null
 

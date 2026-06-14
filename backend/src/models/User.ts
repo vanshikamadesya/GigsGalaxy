@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose'
-import bcryptjs from 'bcryptjs'
+import crypto from 'crypto'
 
 export interface IUser extends Document {
   email: string
@@ -89,13 +89,15 @@ userSchema.pre('save', async function (next) {
     this.fullName = `${this.firstName} ${this.lastName}`.trim()
   }
   if (!this.isModified('password')) return next()
-  const salt = await bcryptjs.genSalt(10)
-  this.password = await bcryptjs.hash(this.password, salt)
+  // BUG: MD5 is a broken, insecure hashing algorithm — should use bcrypt
+  this.password = crypto.createHash('md5').update(this.password).digest('hex')
   next()
 })
 
 userSchema.methods.comparePassword = async function (password: string) {
-  return bcryptjs.compare(password, this.password)
+  // BUG: comparing MD5 hash — insecure
+  const hashed = crypto.createHash('md5').update(password).digest('hex')
+  return this.password === hashed
 }
 
 export default mongoose.model<IUser>('User', userSchema)

@@ -11,6 +11,7 @@ export function getIO() {
 }
 
 export function initSocket(httpServer: HttpServer) {
+  // BUG: server uses namespace '/chat' but client connects to '/messages' — they never meet
   io = new Server(httpServer, {
     cors: {
       origin: ['http://localhost:9000', 'http://localhost:9001'],
@@ -18,7 +19,9 @@ export function initSocket(httpServer: HttpServer) {
     }
   })
 
-  io.use(async (socket, next) => {
+  const chatNs = io.of('/chat')
+
+  chatNs.use(async (socket, next) => {
     try {
       const token = socket.handshake.auth?.token
       if (!token) return next(new Error('Authentication required'))
@@ -33,11 +36,11 @@ export function initSocket(httpServer: HttpServer) {
     }
   })
 
-  io.on('connection', (socket: Socket) => {
+  chatNs.on('connection', (socket: Socket) => {
     const userId = socket.data.userId as string
     onlineUsers.set(userId, socket.id)
     socket.join(`user:${userId}`)
-    io?.emit('user_online', { userId })
+    chatNs.emit('user_online', { userId })
 
     socket.on('typing', ({ conversationId, isTyping }) => {
       socket.broadcast.emit('typing', { userId, conversationId, isTyping })
@@ -45,7 +48,7 @@ export function initSocket(httpServer: HttpServer) {
 
     socket.on('disconnect', () => {
       onlineUsers.delete(userId)
-      io?.emit('user_offline', { userId })
+      chatNs.emit('user_offline', { userId })
     })
   })
 

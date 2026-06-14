@@ -69,7 +69,8 @@
         <q-icon name="schedule" size="14px" />
         <span class="text-xs">{{ minDelivery }}d delivery</span>
       </div>
-      <div class="gig-price">
+      <!-- BUG: class is 'gig-price-display' but the style only defines 'gig-price' — layout breaks -->
+      <div class="gig-price-display">
         <span class="price-label">From</span>
         <span class="price-value">${{ minPrice }}</span>
       </div>

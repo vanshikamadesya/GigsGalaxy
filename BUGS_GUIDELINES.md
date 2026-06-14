@@ -12,6 +12,16 @@ This document outlines **intentional bugs** introduced into the project for eval
 | Intermediate | Socket.IO namespace mismatch (`/chat` vs `/messages`) | Align client and server namespaces to the same value. |
 | Advanced | JWT verification uses wrong secret | Ensure access tokens are signed/verified with `JWT_SECRET`, not the refresh secret. |
 | Advanced | Unvalidated user input causing NoSQL injection | Validate and sanitize all request data before querying MongoDB. |
+| Junior | Missing `VITE_API_TIMEOUT` env var | Add the variable to `.env` file. |
+| Junior | Misnamed CSS class causing UI break | Rename the class to the correct one in the component. |
+| Intermediate | Incorrect API base path in Docker Compose | Update `API_BASE_PATH` env var in `docker-compose.yml`. |
+| Advanced | Insecure password hashing using MD5 | Replace MD5 with bcrypt (or Argon2) for password hashing. |
+| Junior | Missing `VITE_LOG_LEVEL` env var | Add the variable to `.env` file to control logging verbosity. |
+| Junior | Unescaped HTML in user content | Sanitize HTML inputs to prevent XSS attacks. |
+| Intermediate | Incorrect query pagination parameters | Ensure `limit` and `skip` are correctly set to avoid empty result sets. |
+| Advanced | Deprecated SHA1 algorithm for token signing | Switch to SHA256 or stronger algorithm for token generation. |
+
+
 
 ## 🛠 How Candidates Should Approach
 1. **Run the project** (`docker compose up --build`). Observe the failing behavior and error messages.

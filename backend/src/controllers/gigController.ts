@@ -7,6 +7,8 @@ import { formatGig } from '../utils/serializers'
 
 function buildGigQuery(query: any) {
   const q: any = {}
+  // BUG: raw query params passed directly into MongoDB — no type-checking or sanitization,
+  // allowing NoSQL injection via objects like { "$gt": "" }
   const { category, query: search, priceMin, priceMax, rating, sortBy } = query
 
   if (category) q.category = category
@@ -17,6 +19,7 @@ function buildGigQuery(query: any) {
   }
   if (rating) q.rating = { $gte: Number(rating) }
   if (search) {
+    // BUG: `search` is used directly as a regex without sanitization
     q.$or = [
       { title: { $regex: search, $options: 'i' } },
       { description: { $regex: search, $options: 'i' } },

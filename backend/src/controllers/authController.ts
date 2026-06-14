@@ -116,7 +116,8 @@ export const forgotPassword = async (req: any, res: Response) => {
     const { email } = req.body
     const user = await User.findOne({ email })
     if (user) {
-      user.resetPasswordToken = crypto.randomBytes(32).toString('hex')
+      // BUG: SHA1 is a deprecated/weak algorithm — should use SHA256 or stronger
+      user.resetPasswordToken = crypto.createHash('sha1').update(crypto.randomBytes(32)).digest('hex')
       await user.save()
     }
     res.json({ message: 'If that email exists, a reset link has been sent' })

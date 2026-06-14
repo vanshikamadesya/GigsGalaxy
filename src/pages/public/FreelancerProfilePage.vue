@@ -22,6 +22,8 @@
             </q-avatar>
             <div class="text-h6 text-weight-bold">{{ profile.user?.fullName }}</div>
             <div class="text-grey-6 text-sm q-mb-xs">@{{ profile.user?.username }}</div>
+            <!-- BUG: v-html renders unsanitized user input — XSS vulnerability -->
+            <div class="text-grey-7 text-sm q-mb-xs" v-html="profile.tagline"></div>
             <q-badge :color="getLevelColor(profile.level)" class="q-mb-md">{{ getLevelLabel(profile.level) }}</q-badge>
 
             <q-separator class="q-my-md" />

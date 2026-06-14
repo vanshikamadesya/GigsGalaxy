@@ -11,6 +11,9 @@ services:
       - "3000:3000"
     env_file:
       - ./backend/.env
+    environment:
+      # BUG: incorrect base path — should be /api but set to /v1 so all API routes 404
+      - API_BASE_PATH=/v1
     networks:
       - gig-galaxy-network
 
@@ -27,6 +30,8 @@ services:
       - "9000:9000"
     environment:
       - DOCKER_ENV=true
+      # BUG: points to localhost inside the container, not the backend service
+      - VITE_API_BASE_URL=http://localhost:3000/api
     env_file:
       - .env
     depends_on:

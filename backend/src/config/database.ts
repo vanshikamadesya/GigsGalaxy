@@ -1,4 +1,8 @@
 import mongoose from 'mongoose'
+import dns from 'dns'
+
+// Force Google DNS to fix SRV record resolution issues with local IPv6 routers
+dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1'])
 
 export const connectDB = async () => {
   try {

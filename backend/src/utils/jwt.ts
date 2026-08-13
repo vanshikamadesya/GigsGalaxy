@@ -4,10 +4,9 @@ export const generateTokens = (userId: string, email: string, role: string) => {
   const jwtSecret = process.env.JWT_SECRET || 'secret'
   const refreshSecret = process.env.REFRESH_TOKEN_SECRET || 'refresh-secret'
 
-  // BUG: access token is signed with refreshSecret instead of jwtSecret
-  const accessToken = jwt.sign({ id: userId, email, role }, refreshSecret as any, { expiresIn: '7d' })
+  const accessToken = jwt.sign({ id: userId, email, role }, jwtSecret as jwt.Secret, { expiresIn: '7d' })
 
-  const refreshToken = jwt.sign({ id: userId }, refreshSecret as any, { expiresIn: '30d' })
+  const refreshToken = jwt.sign({ id: userId }, refreshSecret as jwt.Secret, { expiresIn: '30d' })
 
   return { accessToken, refreshToken }
 }

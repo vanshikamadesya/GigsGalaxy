@@ -338,38 +338,6 @@ export interface PaginatedResponse<T> {
 }
 
 // ============================================================
-// Auth Types
-// ============================================================
-
-export interface LoginPayload {
-  email: string
-  password: string
-  rememberMe?: boolean
-}
-
-export interface RegisterPayload {
-  email: string
-  password: string
-  confirmPassword: string
-  fullName: string
-  username: string
-  role: 'freelancer' | 'client'
-}
-
-export interface AuthResponse {
-  user: User
-  accessToken: string
-  refreshToken: string
-  expiresIn: number
-}
-
-export interface ResetPasswordPayload {
-  token: string
-  password: string
-  confirmPassword: string
-}
-
-// ============================================================
 // Dashboard Analytics Types
 // ============================================================
 
@@ -402,3 +370,5 @@ export interface AdminStats {
   pendingVerifications: number
   pendingGigs: number
 }
+
+export * from './auth'

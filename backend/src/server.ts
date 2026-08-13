@@ -22,10 +22,18 @@ import adminRoutes from './routes/admin'
 const app = express()
 const httpServer = http.createServer(app)
 const PORT = process.env.PORT || 3000
+const API_BASE_PATH = process.env.API_BASE_PATH || '/api'
+
+const CORS_ORIGINS = [
+  'http://localhost:9000',
+  'http://localhost:9001',
+  'http://127.0.0.1:9000',
+  'http://127.0.0.1:9001'
+]
 
 app.use(
   cors({
-    origin: ['http://localhost:9000'],
+    origin: CORS_ORIGINS,
     credentials: true
   })
 )
@@ -33,19 +41,19 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')))
 
-app.use('/api/auth', authRoutes)
-app.use('/api/gigs', gigRoutes)
-app.use('/api/users', userRoutes)
-app.use('/api/orders', orderRoutes)
-app.use('/api/reviews', reviewRoutes)
-app.use('/api/chat', chatRoutes)
-app.use('/api/categories', categoryRoutes)
-app.use('/api/wallet', walletRoutes)
-app.use('/api/notifications', notificationRoutes)
-app.use('/api/dashboard', dashboardRoutes)
-app.use('/api/admin', adminRoutes)
+app.use(`${API_BASE_PATH}/auth`, authRoutes)
+app.use(`${API_BASE_PATH}/gigs`, gigRoutes)
+app.use(`${API_BASE_PATH}/users`, userRoutes)
+app.use(`${API_BASE_PATH}/orders`, orderRoutes)
+app.use(`${API_BASE_PATH}/reviews`, reviewRoutes)
+app.use(`${API_BASE_PATH}/chat`, chatRoutes)
+app.use(`${API_BASE_PATH}/categories`, categoryRoutes)
+app.use(`${API_BASE_PATH}/wallet`, walletRoutes)
+app.use(`${API_BASE_PATH}/notifications`, notificationRoutes)
+app.use(`${API_BASE_PATH}/dashboard`, dashboardRoutes)
+app.use(`${API_BASE_PATH}/admin`, adminRoutes)
 
-app.get('/api/health', (_req: Request, res: Response) => {
+app.get(`${API_BASE_PATH}/health`, (_req: Request, res: Response) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() })
 })
 

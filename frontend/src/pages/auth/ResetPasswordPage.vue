@@ -33,6 +33,7 @@
   import { useAuthStore } from 'src/stores/auth.store'
   import { useNotify } from 'src/composables/useNotify'
   import { resetPasswordSchema } from 'src/utils/validators'
+  import type { ResetPasswordForm, ValidationErrors } from 'src/types/auth'
 
   const route = useRoute()
   const router = useRouter()
@@ -41,8 +42,8 @@
 
   const showPwd = ref(false)
   const loading = ref(false)
-  const errors = reactive<Record<string, string>>({})
-  const form = reactive({ password: '', confirmPassword: '' })
+  const errors = reactive<ValidationErrors>({})
+  const form = reactive<ResetPasswordForm>({ password: '', confirmPassword: '' })
 
   async function onSubmit() {
     try {

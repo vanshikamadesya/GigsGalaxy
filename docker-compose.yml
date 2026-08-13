@@ -12,28 +12,26 @@ services:
     env_file:
       - ./backend/.env
     environment:
-      # BUG: incorrect base path — should be /api but set to /v1 so all API routes 404
-      - API_BASE_PATH=/v1
+      - API_BASE_PATH=/api
     networks:
       - gig-galaxy-network
 
   frontend:
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile
     container_name: gig-galaxy-frontend
     volumes:
-      - .:/app
+      - ./frontend:/app
       - /app/node_modules
       - /app/.quasar
     ports:
       - "9000:9000"
     environment:
       - DOCKER_ENV=true
-      # BUG: points to localhost inside the container, not the backend service
-      - VITE_API_BASE_URL=http://localhost:3000/api
+      - VITE_API_BASE_URL=/api
     env_file:
-      - .env
+      - ./frontend/.env
     depends_on:
       - backend
     networks:

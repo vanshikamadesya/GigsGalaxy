@@ -5,7 +5,7 @@ import User from '../models/User'
 import { AuthRequest } from '../middleware/auth'
 import { paginated } from '../utils/pagination'
 import { formatConversation, formatMessage } from '../utils/serializers'
-import { getIO } from '../socket'
+import { getChatNamespace } from '../socket'
 
 function conversationIdFor(userA: string, userB: string) {
   return [userA, userB].sort().join('_')
@@ -141,7 +141,7 @@ export const sendMessage = async (req: AuthRequest, res: Response) => {
     await conv.save()
 
     const formatted = formatMessage(chat)
-    getIO()
+    getChatNamespace()
       ?.to(`user:${recipient.toString()}`)
       .emit('new_message', formatted)
 

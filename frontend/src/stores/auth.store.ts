@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { authService } from 'src/services/auth.service'
+import type { User } from 'src/types'
 import type {
-  User,
   LoginPayload,
   RegisterPayload,
   ResetPasswordPayload
-} from 'src/types'
+} from 'src/types/auth'
 import { TOKEN_KEY, REFRESH_TOKEN_KEY, USER_KEY } from 'src/utils/constants'
 
 export const useAuthStore = defineStore('auth', () => {

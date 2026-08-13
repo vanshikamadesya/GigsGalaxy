@@ -93,6 +93,7 @@
   import { useAuthStore } from 'src/stores/auth.store'
   import { useNotify } from 'src/composables/useNotify'
   import { loginSchema } from 'src/utils/validators'
+  import type { LoginForm, ValidationErrors } from 'src/types/auth'
 
   const router = useRouter()
   const route = useRoute()
@@ -100,9 +101,9 @@
   const notify = useNotify()
 
   const showPwd = ref(false)
-  const errors = reactive<Record<string, string>>({})
+  const errors = reactive<ValidationErrors>({})
 
-  const form = reactive({
+  const form = reactive<LoginForm>({
     email: '',
     password: '',
     rememberMe: false

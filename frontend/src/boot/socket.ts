@@ -3,8 +3,8 @@ import { io, type Socket } from 'socket.io-client'
 import { useAuthStore } from 'src/stores/auth.store'
 import { useChatStore } from 'src/stores/chat.store'
 import { useNotificationStore } from 'src/stores/notification.store'
-// BUG: incorrect import path — 'src/utils/constant' does not exist, should be 'src/utils/constants'
-import { TOKEN_KEY } from 'src/utils/constant'
+import { TOKEN_KEY } from 'src/utils/constants'
+import { logger } from 'src/utils/logger'
 
 let socket: Socket | null = null
 
@@ -17,7 +17,7 @@ export default defineBoot(() => {
 
   if (!authStore.isAuthenticated) return
 
-  socket = io(SOCKET_URL, {
+  socket = io(`${SOCKET_URL}/chat`, {
     auth: { token: localStorage.getItem(TOKEN_KEY) },
     transports: ['websocket'],
     reconnection: true,
@@ -26,11 +26,11 @@ export default defineBoot(() => {
   })
 
   socket.on('connect', () => {
-    console.log('[Socket] Connected:', socket?.id)
+    logger.info('[Socket] Connected:', socket?.id)
   })
 
   socket.on('disconnect', (reason) => {
-    console.log('[Socket] Disconnected:', reason)
+    logger.info('[Socket] Disconnected:', reason)
   })
 
   // Chat events

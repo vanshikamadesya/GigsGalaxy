@@ -3,12 +3,13 @@ import { TOKEN_KEY, REFRESH_TOKEN_KEY } from 'src/utils/constants'
 import { isTokenExpired } from 'src/utils/helpers'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api'
+const API_TIMEOUT = Number(import.meta.env.VITE_API_TIMEOUT) || 30000
 
 let refreshPromise: Promise<string> | null = null
 
 const apiClient: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 30000,
+  timeout: API_TIMEOUT,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json'

@@ -1,6 +1,9 @@
 import { defineConfig } from '#q-app/wrappers'
 
 export default defineConfig((/* ctx */) => {
+  const backendTarget =
+    process.env.DOCKER_ENV === 'true' ? 'http://backend:3000' : 'http://localhost:3000'
+
   return {
     boot: ['i18n', 'axios', 'pinia', 'auth', 'socket'],
 
@@ -22,11 +25,11 @@ export default defineConfig((/* ctx */) => {
       host: '0.0.0.0',
       proxy: {
         '/api': {
-          target: 'http://localhost:3000',
+          target: backendTarget,
           changeOrigin: true
         },
         '/socket.io': {
-          target: 'http://localhost:3000',
+          target: backendTarget,
           changeOrigin: true,
           ws: true
         }

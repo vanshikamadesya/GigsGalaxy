@@ -177,6 +177,8 @@ Create a `.env` file in the project root:
 ```env
 VITE_APP_NAME=GigGalaxy
 VITE_API_BASE_URL=http://localhost:3000/api
+VITE_API_TIMEOUT=30000
+VITE_LOG_LEVEL=info
 VITE_SOCKET_URL=http://localhost:3000
 VITE_APP_VERSION=1.0.0
 ```

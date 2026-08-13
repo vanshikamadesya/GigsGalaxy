@@ -3,7 +3,5 @@ node_modules
 dist
 .env
 *.log
-backend
-.git
 .vscode
 .cursor

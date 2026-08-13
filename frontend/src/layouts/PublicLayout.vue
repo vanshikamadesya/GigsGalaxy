@@ -82,13 +82,13 @@
           </template>
 
           <template v-else>
-            <q-btn flat no-caps to="/auth/login" label="Sign In" class="text-weight-medium header-btn" style="color: var(--gg-text) !important" />
+            <q-btn flat no-caps to="/auth/login" label="Sign In" class="text-weight-medium header-btn gt-sm" style="color: var(--gg-text) !important" />
             <q-btn
               unelevated
               no-caps
               to="/auth/register"
               label="Join Free"
-              class="btn-primary"
+              class="btn-primary gt-sm"
             />
           </template>
 

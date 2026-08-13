@@ -23,19 +23,19 @@
           </p>
 
           <!-- Search bar -->
-          <div class="hero-search">
+          <div class="hero-search q-mt-lg q-mb-xl">
             <q-input
               v-model="searchQuery"
-              dense
+              borderless
               placeholder='Try "web development", "logo design", "SEO"...'
               class="hero-search-input"
               @keyup.enter="doSearch"
             >
               <template #prepend>
-                <q-icon name="search" size="20px" color="grey-5" />
+                <q-icon name="search" size="24px" color="grey-6" />
               </template>
               <template #append>
-                <q-btn unelevated no-caps label="Search" class="btn-primary hero-search-btn" @click="doSearch" />
+                <q-btn unelevated no-caps label="Search" class="hero-search-btn bg-primary text-white" @click="doSearch" />
               </template>
             </q-input>
           </div>
@@ -77,10 +77,10 @@
     <!-- ═══ POPULAR CATEGORIES ═══ -->
     <section class="section">
       <div class="page-container">
-        <div class="section-header row items-end justify-between q-mb-xl">
-          <div>
+        <div class="section-header row justify-between items-center q-mb-xl">
+          <div class="q-mb-md-none q-mb-sm-sm">
             <div class="section-eyebrow">Browse by</div>
-            <h2 class="section-title">Popular Categories</h2>
+            <h2 class="section-title q-mb-none">Popular Categories</h2>
           </div>
           <q-btn flat no-caps to="/categories" label="View all categories" icon-right="chevron_right" color="primary" />
         </div>
@@ -393,18 +393,37 @@
     max-width: 620px;
     :deep(.q-field__control) {
       background: white !important;
-      border-radius: $radius-lg !important;
-      height: 56px;
-      box-shadow: $shadow-xl;
+      border-radius: 50px !important;
+      height: 64px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15) !important;
+      padding: 0 8px 0 24px !important;
+      @media (max-width: 600px) {
+        height: 54px;
+        padding: 0 6px 0 16px !important;
+      }
     }
-    :deep(.q-field__prepend) { padding-left: 16px; }
-    :deep(.q-field__append) { padding-right: 8px; }
+    :deep(.q-field__prepend) { 
+      padding-right: 12px;
+      @media (max-width: 600px) { padding-right: 8px; }
+    }
+    :deep(.q-field__append) { padding-left: 0; }
+    :deep(.q-field__native) { 
+      font-size: 1.1rem; 
+      @media (max-width: 600px) { font-size: 0.95rem; }
+    }
   }
 
   .hero-search-btn {
-    border-radius: $radius-md !important;
-    padding: 8px 20px !important;
-    height: 40px;
+    border-radius: 50px !important;
+    padding: 0 32px !important;
+    height: 48px;
+    font-size: 1rem;
+    font-weight: 600;
+    @media (max-width: 600px) {
+      padding: 0 20px !important;
+      height: 42px;
+      font-size: 0.9rem;
+    }
   }
 
   .hero-tags {

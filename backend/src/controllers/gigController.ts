@@ -4,34 +4,42 @@ import User from '../models/User'
 import { AuthRequest } from '../middleware/auth'
 import { paginated } from '../utils/pagination'
 import { formatGig } from '../utils/serializers'
+import { asQueryNumber, asQueryString, escapeRegex } from '../utils/querySanitizer'
 
-function buildGigQuery(query: any) {
-  const q: any = {}
-  // BUG: raw query params passed directly into MongoDB — no type-checking or sanitization,
-  // allowing NoSQL injection via objects like { "$gt": "" }
-  const { category, query: search, priceMin, priceMax, rating, sortBy } = query
+const ALLOWED_SORT_OPTIONS = new Set(['price_asc', 'price_desc', 'rating', 'newest'])
+
+function buildGigQuery(query: Record<string, unknown>) {
+  const q: Record<string, unknown> = {}
+  const category = asQueryString(query.category)
+  const search = asQueryString(query.query)
+  const priceMin = asQueryNumber(query.priceMin)
+  const priceMax = asQueryNumber(query.priceMax)
+  const rating = asQueryNumber(query.rating)
+  const sortBy = asQueryString(query.sortBy)
 
   if (category) q.category = category
-  if (priceMin || priceMax) {
+  if (priceMin !== undefined || priceMax !== undefined) {
     q.basePrice = {}
-    if (priceMin) q.basePrice.$gte = Number(priceMin)
-    if (priceMax) q.basePrice.$lte = Number(priceMax)
+    if (priceMin !== undefined) (q.basePrice as Record<string, number>).$gte = priceMin
+    if (priceMax !== undefined) (q.basePrice as Record<string, number>).$lte = priceMax
   }
-  if (rating) q.rating = { $gte: Number(rating) }
+  if (rating !== undefined) q.rating = { $gte: rating }
   if (search) {
-    // BUG: `search` is used directly as a regex without sanitization
+    const safeSearch = escapeRegex(search)
     q.$or = [
-      { title: { $regex: search, $options: 'i' } },
-      { description: { $regex: search, $options: 'i' } },
-      { tags: { $regex: search, $options: 'i' } }
+      { title: { $regex: safeSearch, $options: 'i' } },
+      { description: { $regex: safeSearch, $options: 'i' } },
+      { tags: { $regex: safeSearch, $options: 'i' } }
     ]
   }
 
   let sort: Record<string, 1 | -1> = { createdAt: -1 }
-  if (sortBy === 'price_asc') sort = { basePrice: 1 }
-  if (sortBy === 'price_desc') sort = { basePrice: -1 }
-  if (sortBy === 'rating') sort = { rating: -1 }
-  if (sortBy === 'newest') sort = { createdAt: -1 }
+  if (sortBy && ALLOWED_SORT_OPTIONS.has(sortBy)) {
+    if (sortBy === 'price_asc') sort = { basePrice: 1 }
+    if (sortBy === 'price_desc') sort = { basePrice: -1 }
+    if (sortBy === 'rating') sort = { rating: -1 }
+    if (sortBy === 'newest') sort = { createdAt: -1 }
+  }
 
   return { q, sort }
 }

@@ -110,21 +110,22 @@
   import { useAuthStore } from 'src/stores/auth.store'
   import { useNotify } from 'src/composables/useNotify'
   import { registerSchema } from 'src/utils/validators'
+  import type { RegisterForm, ValidationErrors } from 'src/types/auth'
 
   const router = useRouter()
   const authStore = useAuthStore()
   const notify = useNotify()
 
   const showPwd = ref(false)
-  const errors = reactive<Record<string, string>>({})
+  const errors = reactive<ValidationErrors>({})
 
-  const form = reactive({
+  const form = reactive<RegisterForm>({
     fullName: '',
     username: '',
     email: '',
     password: '',
     confirmPassword: '',
-    role: 'client' as 'client' | 'freelancer'
+    role: 'client'
   })
 
   const pwdStrength = computed(() => {

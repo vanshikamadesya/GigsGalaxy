@@ -1,25 +1,36 @@
 import { Server as HttpServer } from 'http'
-import { Server, Socket } from 'socket.io'
+import { Server, Socket, Namespace } from 'socket.io'
 import jwt from 'jsonwebtoken'
 import User from './models/User'
 
 let io: Server | null = null
+let chatNs: Namespace | null = null
 const onlineUsers = new Map<string, string>()
+
+const SOCKET_CORS_ORIGINS = [
+  'http://localhost:9000',
+  'http://localhost:9001',
+  'http://127.0.0.1:9000',
+  'http://127.0.0.1:9001'
+]
 
 export function getIO() {
   return io
 }
 
+export function getChatNamespace() {
+  return chatNs
+}
+
 export function initSocket(httpServer: HttpServer) {
-  // BUG: server uses namespace '/chat' but client connects to '/messages' — they never meet
   io = new Server(httpServer, {
     cors: {
-      origin: ['http://localhost:9000', 'http://localhost:9001'],
+      origin: SOCKET_CORS_ORIGINS,
       credentials: true
     }
   })
 
-  const chatNs = io.of('/chat')
+  chatNs = io.of('/chat')
 
   chatNs.use(async (socket, next) => {
     try {
@@ -40,7 +51,7 @@ export function initSocket(httpServer: HttpServer) {
     const userId = socket.data.userId as string
     onlineUsers.set(userId, socket.id)
     socket.join(`user:${userId}`)
-    chatNs.emit('user_online', { userId })
+    chatNs!.emit('user_online', { userId })
 
     socket.on('typing', ({ conversationId, isTyping }) => {
       socket.broadcast.emit('typing', { userId, conversationId, isTyping })
@@ -48,7 +59,7 @@ export function initSocket(httpServer: HttpServer) {
 
     socket.on('disconnect', () => {
       onlineUsers.delete(userId)
-      chatNs.emit('user_offline', { userId })
+      chatNs!.emit('user_offline', { userId })
     })
   })
 

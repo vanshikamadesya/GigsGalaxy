@@ -53,9 +53,15 @@
 
 // Gig Card
 .gig-card {
+  background: white;
   border-radius: $radius-lg !important;
   overflow: hidden;
+  box-shadow: $shadow-sm;
   transition: transform $transition-base, box-shadow $transition-base;
+
+  .body--dark & {
+    background: $surface-dark;
+  }
 
   &:hover {
     transform: translateY(-4px);
@@ -124,9 +130,15 @@
 
 // Freelancer Card
 .fl-card {
+  background: white;
   border-radius: $radius-lg !important;
   text-align: center;
+  box-shadow: $shadow-sm;
   transition: transform $transition-base, box-shadow $transition-base;
+
+  .body--dark & {
+    background: $surface-dark;
+  }
 
   &:hover {
     transform: translateY(-4px);
@@ -604,6 +616,47 @@
   .body--dark & {
     background: $surface-dark;
     border-color: $border-color-dark;
+  }
+}
+
+// Freelancer List Item (matches gig list compact view)
+.freelancer-list-item {
+  display: flex;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: white;
+  border-radius: $radius-md;
+  border: 1px solid $border-color;
+  transition: all $transition-base;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    border-color: $primary;
+  }
+
+  .body--dark & {
+    background: $surface-dark;
+    border-color: $border-color-dark;
+  }
+
+  .fl-list-avatar {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+  }
+
+  .fl-list-title {
+    font-weight: 700;
+    font-size: $font-size-lg;
+  }
+
+  .fl-list-skills {
+    margin-top: $spacing-xs;
+  }
+
+  .fl-list-meta {
+    min-width: 140px;
   }
 }
 

@@ -54,6 +54,16 @@
             />
           </div>
 
+          <!-- List View -->
+          <div v-else class="freelancers-list">
+            <div v-for="fl in freelancers" :key="fl.id" class="freelancer-list-item">
+              <FreelancerListItem
+                :profile="fl"
+                :online-users="chatStore.onlineUsers"
+              />
+            </div>
+          </div>
+
           <!-- Empty -->
           <div v-if="!loading && !freelancers.length" class="text-center q-py-3xl">
             <q-icon name="person_search" size="64px" color="grey-4" class="q-mb-md" />
@@ -76,6 +86,7 @@
   import { userService } from 'src/services/user.service'
   import type { FreelancerProfile, SearchFilters as SearchFiltersType } from 'src/types'
   import FreelancerCard from 'src/components/common/FreelancerCard.vue'
+  import FreelancerListItem from 'src/components/common/FreelancerListItem.vue'
   import SearchFilters from 'src/components/common/SearchFilters.vue'
 
   const chatStore = useChatStore()

@@ -26,7 +26,6 @@
           <div class="hero-search q-mt-lg q-mb-xl">
             <q-input
               v-model="searchQuery"
-              borderless
               placeholder='Try "web development", "logo design", "SEO"...'
               class="hero-search-input"
               @keyup.enter="doSearch"

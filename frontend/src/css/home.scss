@@ -68,7 +68,8 @@
 .hero-search {
   max-width: 620px;
   :deep(.q-field__control) {
-    background: white !important;
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.22) !important;
     border-radius: 50px !important;
     height: 64px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.15) !important;
@@ -83,6 +84,16 @@
     @media (max-width: 600px) { padding-right: 8px; }
   }
   :deep(.q-field__append) { padding-left: 0; }
+  /* hide default underline and make control layout stable */
+  :deep(.q-field__bottom) { display: none !important; }
+  :deep(.q-field__control) { display: flex; align-items: center; gap: 12px; }
+  :deep(.q-field__native) { flex: 1; }
+  :deep(.q-field--animated) { overflow: visible; }
+  /* stronger visible border on focus */
+  :deep(.q-field__control:focus-within) {
+    border-color: rgba(255,255,255,0.38) !important;
+    box-shadow: 0 14px 50px rgba(0,0,0,0.25) !important;
+  }
   :deep(.q-field__native) { 
     font-size: 1.1rem; 
     @media (max-width: 600px) { font-size: 0.95rem; }

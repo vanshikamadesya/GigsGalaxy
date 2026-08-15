@@ -209,13 +209,18 @@ body {
 }
 
 /* Make icons and SVGs inherit text color and be visible in both themes */
-:deep(.q-icon), svg {
-  color: var(--gg-text) !important;
-  fill: currentColor !important;
+.q-icon {
+  color: var(--gg-text);
+  fill: currentColor;
+}
+
+svg {
+  color: var(--gg-text);
+  fill: currentColor;
 }
 
 /* Ensure image icons inside buttons are not inverted or filtered */
-:deep(.q-btn img) {
+.q-btn img {
   filter: none !important;
   opacity: 1 !important;
 }

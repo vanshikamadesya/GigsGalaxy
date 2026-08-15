@@ -5,7 +5,7 @@ export default defineConfig((/* ctx */) => {
     process.env.DOCKER_ENV === 'true' ? 'http://backend:3000' : 'http://localhost:3000'
 
   return {
-    boot: ['i18n', 'axios', 'pinia', 'auth', 'socket'],
+    boot: ['axios', 'pinia', 'auth', 'socket'],
 
     css: ['app.scss'],
 

@@ -4,12 +4,33 @@
 
 // Auth Layout
 .auth-layout {
+  background: $bg-light;
   min-height: 100vh;
-  background: $gradient-hero;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  .body--dark & {
+    background: $bg-dark;
+  }
+}
+
+.auth-page {
+  min-height: 100vh;
   padding: $spacing-lg;
+}
+
+.auth-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 600px;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  box-shadow: $shadow-xl;
+}
+
+.auth-panel-left {
+  flex: 1;
+  background: $gradient-hero;
+  padding: $spacing-2xl;
   position: relative;
   overflow: hidden;
 
@@ -17,9 +38,13 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at top right, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
-                radial-gradient(ellipse at bottom left, rgba(91, 33, 182, 0.2) 0%, transparent 50%);
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
+}
+
+.auth-panel-content {
+  position: relative;
+  z-index: 1;
 }
 
 .auth-container {
@@ -41,6 +66,20 @@
   padding: $spacing-2xl;
 }
 
+.auth-features {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.auth-feature-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-size: $font-size-sm;
+  opacity: 0.9;
+}
+
 // Admin Layout
 .admin-header {
   background: #1a0533;
@@ -53,6 +92,14 @@
   color: white;
 }
 
+.admin-drawer {
+  background: #140428;
+
+  .body--dark & {
+    background: #0a0015;
+  }
+}
+
 .admin-sidebar {
   background: white;
   border-right: 1px solid $border-color;
@@ -60,6 +107,14 @@
   .body--dark & {
     background: $surface-dark;
     border-right-color: $border-color-dark;
+  }
+}
+
+.admin-content {
+  background: #f4f1ff;
+
+  .body--dark & {
+    background: #0f0a1e;
   }
 }
 
@@ -78,6 +133,34 @@
 
 .logo-link {
   text-decoration: none;
+}
+
+.dashboard-drawer {
+  background: white;
+
+  .body--dark & {
+    background: #0d1b2a;
+  }
+}
+
+.drawer-profile {
+  padding-top: $spacing-lg;
+  padding-bottom: $spacing-md;
+}
+
+.drawer-toggle-btn {
+  position: absolute;
+  right: -14px;
+  top: 76px;
+  z-index: 1;
+}
+
+.dashboard-content {
+  background: $bg-light;
+
+  .body--dark & {
+    background: $bg-dark;
+  }
 }
 
 .dashboard-sidebar {
@@ -109,18 +192,166 @@
 
 // Public Layout
 .public-header {
-  background: white;
-  border-bottom: 1px solid $border-color;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: all $transition-base;
 
   .body--dark & {
-    background: $surface-dark;
-    border-bottom-color: $border-color-dark;
+    background: rgba(15, 15, 26, 0.95);
+  }
+
+  &.header-scrolled {
+    border-bottom-color: $border-color;
+    box-shadow: $shadow-sm;
   }
 }
 
+.toolbar-inner {
+  gap: $spacing-md;
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &-icon {
+    color: $primary;
+  }
+
+  &-text {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: $text-primary;
+    letter-spacing: -0.5px;
+
+    .body--dark & {
+      color: white;
+    }
+  }
+
+  &-accent {
+    color: $primary;
+  }
+}
+
+.desktop-nav {
+  display: flex;
+  gap: $spacing-lg;
+
+  .nav-link {
+    color: $text-secondary;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: $font-size-sm;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+    transition: all $transition-fast;
+
+    &:hover,
+    &.router-link-active {
+      color: $primary;
+      border-bottom-color: $primary;
+    }
+  }
+}
+
+.header-search {
+  width: 300px;
+
+  :deep(.q-field__control) {
+    background: $bg-light !important;
+    border-radius: $radius-full !important;
+  }
+
+  :deep(.q-icon) {
+    color: $text-secondary !important;
+  }
+
+  :deep(.q-field__native) {
+    color: $text-primary !important;
+  }
+
+  .body--dark & {
+    :deep(.q-field__control) {
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    :deep(.q-icon) {
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
+
+    :deep(.q-field__native) {
+      color: white !important;
+    }
+  }
+}
+
+// Page transition
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* Ensure header icons are visible in both themes */
+:deep(.public-header .q-icon) {
+  color: $text-primary !important;
+  fill: currentColor !important;
+}
+
+:deep(.public-header .q-btn img) {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+:deep(.body--dark .public-header .q-icon) {
+  color: white !important;
+}
+
+/* Ensure flat buttons in header (e.g. Sign In) are visible on light background */
+:deep(.public-header .q-btn.q-btn--flat) {
+  color: var(--gg-text) !important;
+}
+
+/* Ensure dark mode toggle icon is always visible */
+:deep(.public-header .q-btn--round .q-icon) {
+  color: $text-primary !important;
+}
+
+:deep(.body--dark .public-header .q-btn--round .q-icon) {
+  color: white !important;
+}
+
+.header-actions {
+  :deep(.q-btn) {
+    color: $text-primary;
+
+    .body--dark & {
+      color: white;
+    }
+  }
+
+  :deep(.q-icon) {
+    color: inherit;
+  }
+}
+
+// Legacy public header styles
 .nav-link {
   color: $text-primary;
   text-decoration: none;
@@ -138,8 +369,25 @@
 
 .mobile-menu {
   background: white;
-  
+
   .body--dark & {
     background: $surface-dark;
   }
+}
+
+
+// Page transitions
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateX(12px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateX(-12px);
 }

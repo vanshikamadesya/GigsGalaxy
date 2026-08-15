@@ -102,6 +102,40 @@
   margin-bottom: 4px;
 }
 
+/* Profile settings specific fixes */
+.profile-settings-page {
+  :deep(.q-field__prepend) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 52px;
+    padding-right: 8px;
+  }
+
+  :deep(.social-input) {
+    :deep(.q-field__prepend) {
+      min-width: 44px;
+    }
+
+    :deep(.q-field__label) {
+      transform: none !important;
+    }
+  }
+
+  :deep(.q-field__control) {
+    min-height: 48px;
+  }
+
+  :deep(.q-field__native) {
+    padding-left: 8px;
+  }
+
+  .avatar-upload-section {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .earnings-chart {
   min-height: 300px;
 }

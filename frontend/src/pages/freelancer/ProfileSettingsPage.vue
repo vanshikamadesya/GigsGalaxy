@@ -1,9 +1,9 @@
 <template>
-  <q-page class="q-pa-lg">
+  <q-page class="q-pa-lg profile-settings-page">
     <h1 class="text-h5 text-weight-bold q-mb-xl">Profile & Settings</h1>
 
-    <div class="row q-col-gutter-xl">
-      <div class="col-12 col-md-8">
+    <div class="row q-col-gutter-xl justify-center">
+      <div class="col-12 col-md-10 col-lg-8">
         <q-tabs v-model="tab" class="q-mb-xl" active-color="primary" indicator-color="primary" align="left" dense>
           <q-tab name="profile" label="Profile" />
           <q-tab name="skills" label="Skills & Experience" />
@@ -93,9 +93,16 @@
             <q-card class="gg-card q-pa-xl">
               <div class="form-section-title q-mb-lg">Social & Web Links</div>
               <div class="q-gutter-md">
-                <q-input v-for="s in socialFields" :key="s.key" v-model="(form.social as Record<string, string>)[s.key]" outlined dense :label="s.label" :placeholder="s.placeholder">
-                  <template #prepend><q-icon :name="s.icon" /></template>
-                </q-input>
+                <div class="row q-col-gutter-md">
+                  <div v-for="s in socialFields" :key="s.key" class="col-12 col-md-6">
+                    <q-input class="social-input" v-model="(form.social as Record<string, string>)[s.key]" outlined dense stack-label :label="s.label" :placeholder="s.placeholder">
+                      <template #prepend>
+                        <q-icon size="18px" v-if="s.icon && String(s.icon).startsWith('fab')" :class="s.icon" />
+                        <q-icon size="18px" v-else :name="s.icon" />
+                      </template>
+                    </q-input>
+                  </div>
+                </div>
               </div>
             </q-card>
           </q-tab-panel>
@@ -120,7 +127,7 @@
           </q-tab-panel>
         </q-tab-panels>
 
-        <div class="row justify-end q-mt-lg">
+        <div class="row justify-center q-mt-lg">
           <q-btn unelevated no-caps class="btn-primary q-px-xl" label="Save Changes" :loading="saving" @click="saveProfile" />
         </div>
       </div>

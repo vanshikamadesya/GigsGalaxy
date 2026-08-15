@@ -67,10 +67,3 @@
     }
   }
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-  .auth-title { font-size: $font-size-2xl; font-weight: 700; margin: 0; }
-  .auth-subtitle { color: $text-muted; margin: 4px 0 0; }
-  .field-label { font-size: $font-size-sm; font-weight: 500; color: $text-secondary; display: block; margin-bottom: 4px; }
-</style>

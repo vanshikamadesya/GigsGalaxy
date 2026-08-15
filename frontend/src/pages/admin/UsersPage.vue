@@ -144,8 +144,3 @@
 
   onMounted(loadUsers)
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-  .admin-page { background: #f4f1ff; .body--dark & { background: #0f0a1e; } }
-</style>

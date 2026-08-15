@@ -92,9 +92,3 @@
   onMounted(runSearch)
   watch(() => route.query.q, (q) => { searchQuery.value = q as string; runSearch() })
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-  .gigs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: $spacing-lg; @media (max-width: $bp-md) { grid-template-columns: repeat(2, 1fr); } @media (max-width: $bp-sm) { grid-template-columns: 1fr; } }
-  .freelancers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: $spacing-lg; @media (max-width: $bp-md) { grid-template-columns: repeat(2, 1fr); } @media (max-width: $bp-sm) { grid-template-columns: 1fr; } }
-</style>

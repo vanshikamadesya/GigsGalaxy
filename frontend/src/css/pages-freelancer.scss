@@ -1,0 +1,107 @@
+// ============================================================
+// Freelancer Pages Styles
+// ============================================================
+
+.dashboard-page {
+  background: $bg-light;
+  .body--dark & {
+    background: $bg-dark;
+  }
+}
+
+.gigs-manage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.portfolio-card {
+  border-radius: $radius-lg !important;
+  overflow: hidden;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid $border-color;
+  font-size: $font-size-sm;
+
+  .body--dark & {
+    border-bottom-color: $border-color-dark;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.requirement-item {
+  padding: $spacing-sm;
+  background: $bg-light;
+  border-radius: $radius-sm;
+
+  .body--dark & {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.messages-page {
+  height: calc(100vh - #{$header-height});
+  overflow: hidden;
+}
+
+.wallet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.review-reply {
+  background: rgba(91, 33, 182, 0.04);
+  border-left: 3px solid $primary;
+  border-radius: 0 $radius-sm $radius-sm 0;
+}
+
+.form-section-title {
+  font-size: $font-size-xl;
+  font-weight: 700;
+}
+
+.field-label {
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: $text-secondary;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.earnings-chart {
+  min-height: 300px;
+}

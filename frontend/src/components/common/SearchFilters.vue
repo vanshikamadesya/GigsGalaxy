@@ -144,11 +144,3 @@
     emit('update', filters)
   }
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-
-  .filter-card { position: sticky; top: 80px; }
-  .filter-label { font-size: $font-size-xs; font-weight: 600; color: $text-muted; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: $spacing-xs; }
-  .rating-btn { border-radius: $radius-sm !important; }
-</style>

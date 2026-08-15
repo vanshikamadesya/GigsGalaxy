@@ -73,9 +73,3 @@
     finally { saving.value = false }
   }
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-  .form-section-title { font-size: $font-size-xl; font-weight: 700; }
-  .field-label { font-size: $font-size-sm; font-weight: 500; color: $text-secondary; display: block; margin-bottom: 4px; }
-</style>

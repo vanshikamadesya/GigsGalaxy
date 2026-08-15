@@ -118,14 +118,3 @@
     router.push('/')
   }
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-  .admin-header { background: #1a0533; color: white; }
-  .logo-text { font-size: 1.2rem; font-weight: 800; color: white; }
-  .admin-drawer { background: #140428; .body--dark & { background: #0a0015; } }
-  .admin-content { background: #f4f1ff; .body--dark & { background: #0f0a1e; } }
-  .page-enter-active, .page-leave-active { transition: opacity 0.2s, transform 0.2s; }
-  .page-enter-from { opacity: 0; transform: translateX(12px); }
-  .page-leave-to   { opacity: 0; transform: translateX(-12px); }
-</style>

@@ -303,31 +303,3 @@
     }
   })
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-
-  .gig-title {
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 700;
-    line-height: 1.3;
-  }
-
-  .seller-info-bar { padding: $spacing-md; background: $bg-light; border-radius: $radius-md; .body--dark & { background: rgba(255,255,255,0.05); } }
-  .no-decoration { text-decoration: none; }
-
-  .gig-carousel { border-radius: $radius-lg !important; overflow: hidden; }
-
-  .gig-section-title { font-size: $font-size-xl; font-weight: 700; margin-bottom: $spacing-md; }
-
-  .gig-description { font-size: $font-size-base; line-height: 1.8; color: $text-secondary; white-space: pre-wrap; }
-
-  .review-item { padding-bottom: $spacing-md; border-bottom: 1px solid $border-color; .body--dark & { border-bottom-color: $border-color-dark; } }
-
-  .review-reply {
-    background: rgba(91,33,182,0.04);
-    border-left: 3px solid $primary;
-    border-radius: 0 $radius-sm $radius-sm 0;
-    font-size: $font-size-sm;
-  }
-</style>

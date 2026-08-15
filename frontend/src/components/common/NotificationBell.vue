@@ -106,29 +106,3 @@
     if (notif.actionUrl) router.push(notif.actionUrl)
   }
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-
-  .notif-panel {
-    border-radius: $radius-lg !important;
-    box-shadow: $shadow-xl !important;
-  }
-
-  .notif-header {
-    background: white;
-    .body--dark & { background: $surface-dark; }
-  }
-
-  .notif-unread {
-    background: rgba(91, 33, 182, 0.04);
-    .body--dark & { background: rgba(139, 92, 246, 0.08); }
-  }
-
-  .unread-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: $primary;
-  }
-</style>

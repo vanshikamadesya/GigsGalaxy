@@ -1,0 +1,40 @@
+// ============================================================
+// Admin Pages Styles
+// ============================================================
+
+.admin-page {
+  background: #f4f1ff;
+  .body--dark & {
+    background: #0f0a1e;
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-lg;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-section-title {
+  font-size: $font-size-xl;
+  font-weight: 700;
+}
+
+.chart-card {
+  background: white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-sm;
+
+  .body--dark & {
+    background: $surface-dark;
+  }
+}

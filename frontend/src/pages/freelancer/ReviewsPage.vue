@@ -113,8 +113,3 @@
     reviews.value = res.data
   })
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-  .review-reply { background: rgba(91,33,182,0.04); border-left: 3px solid $primary; border-radius: 0 $radius-sm $radius-sm 0; }
-</style>

@@ -56,8 +56,3 @@
     }
   }
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-  .auth-title { font-size: $font-size-2xl; font-weight: 700; margin: 0; }
-</style>

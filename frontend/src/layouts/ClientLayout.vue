@@ -107,16 +107,3 @@
     router.push('/')
   }
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-  .dashboard-header { background: white; color: $text-primary; border-bottom: 1px solid $border-color; .body--dark & { background: #16213e; border-bottom-color: $border-color-dark; color: white; } }
-  .logo-link { text-decoration: none; }
-  .logo-text { font-size: 1.2rem; font-weight: 800; color: $text-primary; .body--dark & { color: white; } }
-  .dashboard-drawer { background: white; .body--dark & { background: #0d1b2a; } }
-  .drawer-profile { padding-top: $spacing-lg; padding-bottom: $spacing-md; }
-  .dashboard-content { background: $bg-light; .body--dark & { background: $bg-dark; } }
-  .page-enter-active, .page-leave-active { transition: opacity 0.2s, transform 0.2s; }
-  .page-enter-from { opacity: 0; transform: translateX(12px); }
-  .page-leave-to   { opacity: 0; transform: translateX(-12px); }
-</style>

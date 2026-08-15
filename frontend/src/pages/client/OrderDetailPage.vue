@@ -172,9 +172,3 @@
 
   onMounted(() => orderStore.fetchOrderById(route.params.id as string))
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-  .summary-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid $border-color; font-size: $font-size-sm; .body--dark & { border-bottom-color: $border-color-dark; } &:last-child { border-bottom: none; } }
-  .field-label { font-size: $font-size-sm; font-weight: 500; color: $text-secondary; display: block; margin-bottom: 4px; }
-</style>

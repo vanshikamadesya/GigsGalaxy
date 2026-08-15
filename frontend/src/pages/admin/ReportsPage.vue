@@ -67,9 +67,3 @@
     notify.info('PDF export feature available in production with a PDF library.')
   }
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-  .admin-page { background: #f4f1ff; .body--dark & { background: #0f0a1e; } }
-  .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: $spacing-lg; @media (max-width: $bp-lg) { grid-template-columns: repeat(2,1fr); } @media (max-width: $bp-sm) { grid-template-columns: 1fr; } }
-</style>

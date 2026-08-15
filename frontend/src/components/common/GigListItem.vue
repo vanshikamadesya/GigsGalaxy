@@ -39,9 +39,3 @@
   const minPrice = computed(() => Math.min(...props.gig.packages.map(p => p.price)))
   const minDelivery = computed(() => Math.min(...props.gig.packages.map(p => p.deliveryTime)))
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-  .gig-list-item { transition: box-shadow $transition-base; &:hover { box-shadow: $shadow-lg !important; } }
-  .gig-list-title { font-weight: 600; font-size: $font-size-sm; line-height: 1.4; }
-</style>

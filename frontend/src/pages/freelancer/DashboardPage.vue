@@ -136,7 +136,7 @@
   import { dashboardService } from 'src/services/dashboard.service'
   import { getInitials, truncate } from 'src/utils/helpers'
   import { ORDER_STATUS_COLORS, ORDER_STATUS_LABELS } from 'src/utils/constants'
-  import type { DashboardStats, EarningsChart } from 'src/types'
+  import type { DashboardStats, EarningsChart as EarningsChartType } from 'src/types'
   import StatCard from 'src/components/common/StatCard.vue'
   import EarningsChart from 'src/components/freelancer/EarningsChart.vue'
 
@@ -146,7 +146,7 @@
 
   const stats = ref<DashboardStats>({ activeOrders: 0, completedOrders: 0 })
   const statsLoading = ref(true)
-  const chartData = ref<EarningsChart[]>([])
+  const chartData = ref<EarningsChartType[]>([])
   const chartLoading = ref(true)
   const chartPeriod = ref('month')
 
@@ -181,35 +181,3 @@
     ])
   })
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-
-  .dashboard-page { background: $bg-light; .body--dark & { background: $bg-dark; } }
-
-  .welcome-banner {
-    background: $gradient-primary;
-    border-radius: $radius-xl;
-    padding: $spacing-xl;
-    color: white;
-
-    .welcome-title { font-size: $font-size-2xl; font-weight: 700; margin: 0 0 4px; color: white; }
-    p { margin: 0; opacity: 0.85; }
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: $spacing-lg;
-    @media (max-width: $bp-lg) { grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: $bp-sm) { grid-template-columns: 1fr; }
-  }
-
-  .chart-container { height: 260px; }
-
-  .quick-action-item {
-    border-radius: $radius-md;
-    margin: 2px 0;
-    &:hover { background: rgba(91,33,182,0.04); }
-  }
-</style>

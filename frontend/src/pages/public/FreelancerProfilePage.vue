@@ -236,19 +236,3 @@
     }
   })
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-
-  .profile-avatar { border: 4px solid $primary; }
-  .stat-row { padding: 4px 0; }
-
-  .gigs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: $spacing-lg; @media (max-width: $bp-sm) { grid-template-columns: 1fr; } }
-  .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: $spacing-lg; @media (max-width: $bp-sm) { grid-template-columns: 1fr; } }
-
-  .portfolio-card { border-radius: $radius-lg !important; overflow: hidden; }
-  .cert-card { border-radius: $radius-md !important; }
-
-  .review-item { padding-bottom: $spacing-lg; border-bottom: 1px solid $border-color; .body--dark & { border-bottom-color: $border-color-dark; } &:last-child { border-bottom: none; } }
-  .empty-tab-state { text-align: center; padding: $spacing-3xl; color: $text-muted; }
-</style>

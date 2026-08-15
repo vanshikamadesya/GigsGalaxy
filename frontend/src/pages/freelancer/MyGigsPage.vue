@@ -126,31 +126,3 @@
 
   onMounted(() => gigStore.fetchMyGigs())
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-
-  .gigs-manage-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: $spacing-lg;
-    @media (max-width: $bp-lg) { grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: $bp-sm) { grid-template-columns: 1fr; }
-  }
-
-  .gig-manage-card {
-    border-radius: $radius-lg !important;
-    overflow: hidden;
-    transition: box-shadow $transition-base;
-    &:hover { box-shadow: $shadow-lg !important; }
-  }
-
-  .gig-manage-image { position: relative; }
-  .gig-status-badge {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    border-radius: $radius-full !important;
-    text-transform: capitalize;
-  }
-</style>

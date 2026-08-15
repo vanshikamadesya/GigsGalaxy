@@ -7,5 +7,18 @@
 // ── Application styles ────────────────────────────────────────
 // Use @import (legacy) so that app.scss stays in legacy mode
 // and does not conflict with the @use inside the individual files.
-@import 'src/styles/variables';
-@import 'src/styles/global';
+@import './variables';
+@import './global';
+
+// ── Page-specific styles ──────────────────────────────────────
+@import './pages-auth';
+@import './pages-admin';
+@import './pages-freelancer';
+@import './pages-client';
+@import './pages-public';
+
+// ── Layout styles ─────────────────────────────────────────────
+@import './layouts';
+
+// ── Component styles ──────────────────────────────────────────
+@import './components';

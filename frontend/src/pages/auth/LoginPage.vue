@@ -135,21 +135,3 @@
     }
   }
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-
-  .auth-title { font-size: $font-size-2xl; font-weight: 700; margin: 0; }
-  .auth-subtitle { color: $text-muted; margin: 4px 0 0; }
-  .field-label { font-size: $font-size-sm; font-weight: 500; color: $text-secondary; display: block; margin-bottom: 4px; }
-  .forgot-link { font-size: $font-size-xs; color: $primary; text-decoration: none; &:hover { text-decoration: underline; } }
-  .auth-link { color: $primary; font-weight: 600; text-decoration: none; &:hover { text-decoration: underline; } }
-
-  .divider { &-line { flex: 1; height: 1px; background: $border-color; } &-text { font-size: $font-size-xs; color: $text-muted; white-space: nowrap; } }
-
-  .social-btn {
-    border-color: $border-color !important;
-    font-size: $font-size-sm !important;
-    border-radius: $radius-md !important;
-  }
-</style>

@@ -66,10 +66,3 @@
     notify.success('Settings saved!')
   }
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-  .admin-page { background: #f4f1ff; .body--dark & { background: #0f0a1e; } }
-  .form-section-title { font-size: $font-size-xl; font-weight: 700; }
-  .field-label { font-size: $font-size-sm; font-weight: 500; color: $text-secondary; display: block; margin-bottom: 4px; }
-</style>

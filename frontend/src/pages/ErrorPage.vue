@@ -24,18 +24,3 @@
 
   const router = useRouter()
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-
-  .error-code {
-    font-size: 8rem;
-    font-weight: 900;
-    background: $gradient-primary;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1;
-    margin-bottom: $spacing-lg;
-  }
-</style>

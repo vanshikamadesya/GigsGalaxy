@@ -102,17 +102,3 @@
     gigStore.fetchGigs({ query: q, page: 1 })
   })
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-
-  .gigs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: $spacing-lg;
-    @media (max-width: $bp-lg)  { grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: $bp-sm)  { grid-template-columns: 1fr; }
-  }
-
-  .gigs-list { display: flex; flex-direction: column; gap: $spacing-md; }
-</style>

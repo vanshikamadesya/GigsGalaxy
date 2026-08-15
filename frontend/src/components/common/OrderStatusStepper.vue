@@ -48,7 +48,3 @@
     return idx < currentIdx
   }
 </script>
-
-<style lang="scss" scoped>
-  .order-stepper { border-radius: 12px !important; }
-</style>

@@ -132,9 +132,3 @@
 
   onMounted(loadCategories)
 </script>
-
-<style lang="scss" scoped>
-  .admin-page { background: #f4f1ff; }
-  .body--dark .admin-page { background: #0f0a1e; }
-  .field-label { font-size: 0.875rem; font-weight: 500; display: block; margin-bottom: 4px; }
-</style>

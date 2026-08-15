@@ -29,9 +29,3 @@
     showValue: false
   })
 </script>
-
-<style lang="scss" scoped>
-  .stars { gap: 1px; }
-  .rating-value { color: #92400e; }
-  .rating-count { font-size: 0.8rem; }
-</style>

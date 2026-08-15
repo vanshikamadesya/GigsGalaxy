@@ -150,11 +150,3 @@
 
   onMounted(loadItems)
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-  .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: $spacing-lg; @media (max-width: $bp-lg) { grid-template-columns: repeat(2, 1fr); } @media (max-width: $bp-sm) { grid-template-columns: 1fr; } }
-  .portfolio-card { border-radius: $radius-lg !important; overflow: hidden; }
-  .ellipsis-2-lines { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .field-label { font-size: $font-size-sm; font-weight: 500; color: $text-secondary; display: block; margin-bottom: 4px; }
-</style>

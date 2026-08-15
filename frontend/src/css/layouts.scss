@@ -1,0 +1,145 @@
+// ============================================================
+// Layout Styles
+// ============================================================
+
+// Auth Layout
+.auth-layout {
+  min-height: 100vh;
+  background: $gradient-hero;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-lg;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top right, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom left, rgba(91, 33, 182, 0.2) 0%, transparent 50%);
+  }
+}
+
+.auth-container {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: $radius-xl;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 480px;
+  width: 100%;
+
+  .body--dark & {
+    background: rgba(26, 26, 46, 0.95);
+  }
+}
+
+.auth-form-wrap {
+  padding: $spacing-2xl;
+}
+
+// Admin Layout
+.admin-header {
+  background: #1a0533;
+  color: white;
+}
+
+.logo-text {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: white;
+}
+
+.admin-sidebar {
+  background: white;
+  border-right: 1px solid $border-color;
+
+  .body--dark & {
+    background: $surface-dark;
+    border-right-color: $border-color-dark;
+  }
+}
+
+// Client & Freelancer Layouts
+.dashboard-header {
+  background: white;
+  color: $text-primary;
+  border-bottom: 1px solid $border-color;
+
+  .body--dark & {
+    background: #16213e;
+    border-bottom-color: $border-color-dark;
+    color: white;
+  }
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.dashboard-sidebar {
+  background: white;
+  border-right: 1px solid $border-color;
+
+  .body--dark & {
+    background: $surface-dark;
+    border-right-color: $border-color-dark;
+  }
+}
+
+.sidebar-nav-item {
+  transition: all $transition-fast;
+  border-radius: $radius-md;
+  padding: $spacing-sm $spacing-md;
+  margin-bottom: 4px;
+
+  &:hover {
+    background: rgba(91, 33, 182, 0.08);
+  }
+
+  &.active {
+    background: rgba(91, 33, 182, 0.12);
+    color: $primary;
+    font-weight: 600;
+  }
+}
+
+// Public Layout
+.public-header {
+  background: white;
+  border-bottom: 1px solid $border-color;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .body--dark & {
+    background: $surface-dark;
+    border-bottom-color: $border-color-dark;
+  }
+}
+
+.nav-link {
+  color: $text-primary;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $primary;
+  }
+
+  .body--dark & {
+    color: $text-white;
+  }
+}
+
+.mobile-menu {
+  background: white;
+  
+  .body--dark & {
+    background: $surface-dark;
+  }
+}

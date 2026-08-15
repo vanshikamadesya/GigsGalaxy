@@ -1,0 +1,112 @@
+// ============================================================
+// Auth Pages Styles
+// ============================================================
+
+.auth-title {
+  font-size: $font-size-2xl;
+  font-weight: 700;
+  margin: 0;
+}
+
+.auth-subtitle {
+  color: $text-muted;
+  margin: 4px 0 0;
+}
+
+.field-label {
+  font-size: $font-size-sm;
+  font-weight: 500;
+  color: $text-secondary;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.forgot-link {
+  font-size: $font-size-xs;
+  color: $primary;
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}
+
+.auth-link {
+  color: $primary;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  &:hover { text-decoration: underline; }
+}
+
+.divider {
+  &-line {
+    flex: 1;
+    height: 1px;
+    background: $border-color;
+  }
+  &-text {
+    font-size: $font-size-xs;
+    color: $text-muted;
+    white-space: nowrap;
+  }
+}
+
+.social-btn {
+  border-color: $border-color !important;
+  font-size: $font-size-sm !important;
+  border-radius: $radius-md !important;
+}
+
+// Role selector (Register page)
+.role-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-sm;
+}
+
+.role-option {
+  border: 2px solid $border-color;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  text-align: center;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &.active {
+    border-color: $primary;
+    background: rgba(91, 33, 182, 0.04);
+  }
+
+  .role-label {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+  .role-desc {
+    font-size: $font-size-xs;
+    color: $text-muted;
+  }
+}
+
+// Password strength indicator
+.pwd-strength {
+  display: flex;
+  align-items: center;
+}
+
+.pwd-bars {
+  flex: 1;
+}
+
+.pwd-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: $border-color;
+  transition: background $transition-base;
+
+  &.strength-1 { background: $danger; }
+  &.strength-2 { background: $warning; }
+  &.strength-3 { background: $info; }
+  &.strength-4 { background: $success; }
+}

@@ -117,26 +117,3 @@
     ])
   })
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-
-  .dashboard-page { background: $bg-light; .body--dark & { background: $bg-dark; } }
-
-  .welcome-banner {
-    background: linear-gradient(135deg, #0f766e, #14b8a6);
-    border-radius: $radius-xl;
-    padding: $spacing-xl;
-    color: white;
-    .welcome-title { font-size: $font-size-2xl; font-weight: 700; margin: 0 0 4px; color: white; }
-    p { margin: 0; }
-  }
-
-  .btn-client { background: white !important; color: #0f766e !important; border-radius: $radius-md !important; font-weight: 600 !important; }
-
-  .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: $spacing-lg; @media (max-width: $bp-lg) { grid-template-columns: repeat(2,1fr); } @media (max-width: $bp-sm) { grid-template-columns: 1fr; } }
-
-  .quick-action { border-radius: $radius-sm; margin: 2px 0; &:hover { background: rgba(91,33,182,0.04); } }
-
-  .rec-gig-item { display: flex; align-items: center; padding: $spacing-sm 0; border-bottom: 1px solid $border-color; cursor: pointer; &:last-child { border-bottom: none; } &:hover { background: rgba(91,33,182,0.02); } .body--dark & { border-bottom-color: $border-color-dark; } }
-</style>

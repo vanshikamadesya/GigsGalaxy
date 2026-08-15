@@ -193,36 +193,3 @@
     walletStore.fetchTransactions()
   })
 </script>
-
-<style lang="scss" scoped>
-  @use 'src/styles/variables' as *;
-
-  .wallet-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: $spacing-lg;
-    @media (max-width: $bp-lg)  { grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: $bp-sm)  { grid-template-columns: 1fr; }
-  }
-
-  .wallet-card {
-    border-radius: $radius-xl !important;
-    &--primary { background: $gradient-primary; color: white; }
-    &--warning  { background: linear-gradient(135deg, #b45309, #f59e0b); color: white; }
-    &--success  { background: linear-gradient(135deg, #15803d, #22c55e); color: white; }
-    &--grey     { background: linear-gradient(135deg, #374151, #6b7280); color: white; }
-  }
-
-  .wallet-label { font-size: $font-size-sm; opacity: 0.8; }
-  .wallet-amount { font-size: $font-size-3xl; font-weight: 800; }
-  .wallet-desc { font-size: $font-size-xs; opacity: 0.7; }
-
-  .escrow-flow {
-    @media (max-width: $bp-md) { flex-wrap: wrap; }
-  }
-
-  .escrow-step { flex: 1; min-width: 80px; }
-  .escrow-icon-wrap { width: 56px; height: 56px; border-radius: 50%; background: $bg-light; display: flex; align-items: center; justify-content: center; margin: 0 auto $spacing-sm; .body--dark & { background: rgba(255,255,255,0.05); } }
-  .escrow-label { font-size: $font-size-xs; font-weight: 500; color: $text-secondary; }
-  .field-label { font-size: $font-size-sm; font-weight: 500; color: $text-secondary; display: block; margin-bottom: 4px; }
-</style>

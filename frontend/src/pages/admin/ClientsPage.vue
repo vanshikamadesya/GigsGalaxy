@@ -57,8 +57,3 @@
     loading.value = false
   })
 </script>
-
-<style lang="scss" scoped>
-  .admin-page { background: #f4f1ff; }
-  .body--dark .admin-page { background: #0f0a1e; }
-</style>

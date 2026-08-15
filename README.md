@@ -207,8 +207,10 @@ REFRESH_TOKEN_EXPIRE=30d
 
 ```bash
 # From the project root
+cd frontend
 npm install
 ```
+*(Note: Ensure you are in the `frontend` or root directory depending on your structure. Typically, dependencies for Quasar are in the `frontend` folder.)*
 
 #### Backend
 
@@ -219,7 +221,21 @@ npm install
 
 ---
 
-### 4. Run the Development Servers
+### 4. Database Setup & Seeding
+
+Before running the application, you need to seed the database with initial categories, roles, and test users to ensure the platform works correctly. 
+
+Make sure your MongoDB instance is running (locally or via Atlas) and that your `backend/.env` is configured correctly.
+
+```bash
+cd backend
+npm run seed
+```
+*This will execute the `src/scripts/seed.ts` script to populate your database with essential default data.*
+
+---
+
+### 5. Run the Development Servers
 
 Open **two terminals** and run each concurrently:
 
@@ -227,14 +243,14 @@ Open **two terminals** and run each concurrently:
 ```bash
 cd backend
 npm run dev
-# Starts on http://localhost:3000
+# Starts API server on http://localhost:3000
 ```
 
 **Terminal 2 — Frontend:**
 ```bash
-# From project root
+cd frontend
 npm run dev
-# Starts on http://localhost:9000
+# Starts Quasar dev server on http://localhost:9000
 ```
 
 ---

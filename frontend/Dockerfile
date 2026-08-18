@@ -2,6 +2,12 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
+ARG VITE_API_BASE_URL=http://localhost:3000/api
+ARG VITE_SOCKET_URL=http://localhost:3000
+
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+ENV VITE_SOCKET_URL=$VITE_SOCKET_URL
+
 # Copy package files
 COPY package*.json ./
 

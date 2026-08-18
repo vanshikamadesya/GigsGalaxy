@@ -2,6 +2,11 @@
 
 A full-stack freelancer marketplace platform built with **Vue 3 / Quasar** on the frontend and **Node.js / Express / MongoDB** on the backend, with real-time communication via **Socket.IO**.
 
+### Live Demo
+
+- **Frontend:** [https://gigs-galaxy.vercel.app/](https://gigs-galaxy.vercel.app/)
+- **Backend API:** [https://gigsgalaxy.onrender.com](https://gigsgalaxy.onrender.com)
+
 ---
 
 ## 📋 Table of Contents

@@ -43,10 +43,11 @@ A full-stack freelancer marketplace platform built with **Vue 3 / Quasar** on th
 
 ```
 gig-galaxy/
-├── backend/                          # Node.js Express API server
+├── backend/                              # Node.js Express API server
 │   ├── src/
-│   │   ├── config/                   # Database & app configuration
-│   │   ├── controllers/              # Route handler logic
+│   │   ├── config/                       # Database & app configuration
+│   │   │   └── database.ts
+│   │   ├── controllers/                  # Route handler logic
 │   │   │   ├── authController.ts
 │   │   │   ├── categoryController.ts
 │   │   │   ├── chatController.ts
@@ -57,11 +58,11 @@ gig-galaxy/
 │   │   │   ├── reviewController.ts
 │   │   │   ├── userController.ts
 │   │   │   └── walletController.ts
-│   │   ├── middleware/               # Express middleware
-│   │   │   ├── auth.ts               # JWT authentication guard
-│   │   │   ├── errorHandler.ts       # Global error handler
-│   │   │   └── upload.ts             # Multer file upload config
-│   │   ├── models/                   # Mongoose schemas
+│   │   ├── middleware/                   # Express middleware
+│   │   │   ├── auth.ts                   # JWT authentication guard
+│   │   │   ├── errorHandler.ts           # Global error handler
+│   │   │   └── upload.ts                 # Multer file upload config
+│   │   ├── models/                       # Mongoose schemas
 │   │   │   ├── Category.ts
 │   │   │   ├── Chat.ts
 │   │   │   ├── Conversation.ts
@@ -73,7 +74,7 @@ gig-galaxy/
 │   │   │   ├── User.ts
 │   │   │   ├── Wallet.ts
 │   │   │   └── WithdrawRequest.ts
-│   │   ├── routes/                   # Express route definitions
+│   │   ├── routes/                       # Express route definitions
 │   │   │   ├── admin.ts
 │   │   │   ├── auth.ts
 │   │   │   ├── categories.ts
@@ -85,59 +86,128 @@ gig-galaxy/
 │   │   │   ├── reviews.ts
 │   │   │   ├── users.ts
 │   │   │   └── wallet.ts
-│   │   ├── scripts/                  # Utility scripts (e.g., DB seeding)
-│   │   ├── utils/                    # Helper utilities
-│   │   ├── server.ts                 # App entry point
-│   │   └── socket.ts                 # Socket.IO setup
-│   ├── uploads/                      # Uploaded files (gitignored)
-│   ├── dist/                         # Compiled JS output (gitignored)
-│   ├── .env                          # Backend environment variables
+│   │   ├── scripts/                      # Utility scripts (e.g., DB seeding)
+│   │   │   └── seed.ts
+│   │   ├── utils/                        # Helper utilities
+│   │   ├── server.ts                     # App entry point
+│   │   └── socket.ts                     # Socket.IO setup
+│   ├── uploads/                          # Uploaded files (gitignored)
+│   ├── dist/                             # Compiled JS output (gitignored)
+│   ├── .env                              # Backend environment variables
 │   ├── .gitignore
+│   ├── .dockerignore
 │   ├── Dockerfile
 │   ├── package.json
 │   └── tsconfig.json
 │
-├── src/                              # Quasar/Vue 3 frontend source
-│   ├── boot/                         # Quasar boot files (axios, plugins)
-│   ├── components/
-│   │   ├── common/                   # Shared reusable components
-│   │   └── freelancer/               # Freelancer-specific components
-│   ├── composables/                  # Vue composables (shared logic)
-│   ├── css/                          # Global CSS / SCSS
-│   ├── i18n/                         # Internationalization files
-│   ├── layouts/                      # App layout wrappers
-│   ├── pages/                        # Route-level page components
-│   │   ├── admin/                    # Admin dashboard pages
-│   │   ├── auth/                     # Login / Register pages
-│   │   ├── client/                   # Client-facing pages
-│   │   ├── freelancer/               # Freelancer-facing pages
-│   │   └── public/                   # Public-facing pages
-│   ├── router/                       # Vue Router configuration
-│   ├── services/                     # Axios API service wrappers
-│   ├── stores/                       # Pinia state stores
-│   │   ├── auth.store.ts
-│   │   ├── chat.store.ts
-│   │   ├── gig.store.ts
-│   │   ├── notification.store.ts
-│   │   ├── order.store.ts
-│   │   ├── ui.store.ts
-│   │   └── wallet.store.ts
-│   ├── styles/                       # Additional SCSS styles
-│   ├── types/                        # TypeScript type definitions
-│   ├── utils/                        # Frontend utility functions
-│   ├── App.vue                       # Root Vue component
-│   └── env.d.ts                      # Vite environment type declarations
+├── frontend/                             # Vue 3 / Quasar SPA
+│   ├── src/
+│   │   ├── boot/                         # Quasar boot files
+│   │   │   ├── auth.ts
+│   │   │   ├── axios.ts
+│   │   │   ├── pinia.ts
+│   │   │   └── socket.ts
+│   │   ├── components/
+│   │   │   ├── common/                   # Shared reusable components
+│   │   │   │   ├── ChatWindow.vue
+│   │   │   │   ├── DrawerItem.vue
+│   │   │   │   ├── FreelancerCard.vue
+│   │   │   │   ├── FreelancerListItem.vue
+│   │   │   │   ├── GigCard.vue
+│   │   │   │   ├── GigListItem.vue
+│   │   │   │   ├── NotificationBell.vue
+│   │   │   │   ├── OrderStatusStepper.vue
+│   │   │   │   ├── PublicFooter.vue
+│   │   │   │   ├── SearchFilters.vue
+│   │   │   │   ├── StarRating.vue
+│   │   │   │   └── StatCard.vue
+│   │   │   └── freelancer/               # Freelancer-specific components
+│   │   │       ├── CreateGigContent.vue
+│   │   │       └── EarningsChart.vue
+│   │   ├── composables/                  # Vue composables (shared logic)
+│   │   │   ├── useForm.ts
+│   │   │   ├── useInfiniteScroll.ts
+│   │   │   ├── useNotify.ts
+│   │   │   ├── usePagination.ts
+│   │   │   └── useSearch.ts
+│   │   ├── css/                          # Global SCSS styles
+│   │   │   ├── app.scss
+│   │   │   ├── components.scss
+│   │   │   ├── global.scss
+│   │   │   ├── home.scss
+│   │   │   ├── layouts.scss
+│   │   │   ├── pages-admin.scss
+│   │   │   ├── pages-auth.scss
+│   │   │   ├── pages-client.scss
+│   │   │   ├── pages-freelancer.scss
+│   │   │   ├── pages-public.scss
+│   │   │   ├── quasar.variables.scss
+│   │   │   └── variables.scss
+│   │   ├── layouts/                      # App layout wrappers
+│   │   │   ├── AdminLayout.vue
+│   │   │   ├── AuthLayout.vue
+│   │   │   ├── ClientLayout.vue
+│   │   │   ├── FreelancerLayout.vue
+│   │   │   └── PublicLayout.vue
+│   │   ├── pages/                        # Route-level page components
+│   │   │   ├── ErrorPage.vue
+│   │   │   ├── admin/                    # Admin dashboard pages
+│   │   │   ├── auth/                     # Login / Register pages
+│   │   │   ├── client/                   # Client-facing pages
+│   │   │   ├── freelancer/               # Freelancer-facing pages
+│   │   │   └── public/                   # Public-facing pages
+│   │   ├── router/                       # Vue Router configuration
+│   │   │   ├── index.ts
+│   │   │   └── routes.ts
+│   │   ├── services/                     # Axios API service wrappers
+│   │   │   ├── api.ts
+│   │   │   ├── auth.service.ts
+│   │   │   ├── category.service.ts
+│   │   │   ├── chat.service.ts
+│   │   │   ├── dashboard.service.ts
+│   │   │   ├── gig.service.ts
+│   │   │   ├── notification.service.ts
+│   │   │   ├── order.service.ts
+│   │   │   ├── review.service.ts
+│   │   │   ├── user.service.ts
+│   │   │   └── wallet.service.ts
+│   │   ├── stores/                       # Pinia state stores
+│   │   │   ├── auth.store.ts
+│   │   │   ├── chat.store.ts
+│   │   │   ├── gig.store.ts
+│   │   │   ├── notification.store.ts
+│   │   │   ├── order.store.ts
+│   │   │   ├── ui.store.ts
+│   │   │   └── wallet.store.ts
+│   │   ├── types/                        # TypeScript type definitions
+│   │   │   ├── auth.ts
+│   │   │   └── index.ts
+│   │   ├── utils/                        # Frontend utility functions
+│   │   │   ├── constants.ts
+│   │   │   ├── helpers.ts
+│   │   │   ├── logger.ts
+│   │   │   └── validators.ts
+│   │   ├── App.vue                       # Root Vue component
+│   │   └── env.d.ts                      # Vite environment type declarations
+│   ├── dist/                             # Build output (gitignored)
+│   ├── .env                              # Frontend environment variables
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── .dockerignore
+│   ├── .eslintrc.cjs                     # ESLint configuration
+│   ├── .prettierrc                       # Prettier configuration
+│   ├── Dockerfile
+│   ├── nginx.conf                        # Nginx config for production
+│   ├── vercel.json                       # Vercel deployment config
+│   ├── index.html                        # HTML entry point
+│   ├── package.json                      # Frontend dependencies & scripts
+│   ├── quasar.config.ts                  # Quasar framework configuration
+│   └── tsconfig.json                     # TypeScript configuration
 │
-├── .env                              # Frontend environment variables
-├── .eslintrc.cjs                     # ESLint configuration
+├── Dockerfile                            # Root Dockerfile (for Render)
+├── docker-compose.yml                    # Docker Compose for full stack
 ├── .gitignore
-├── .prettierrc                       # Prettier configuration
-├── docker-compose.yml                # Docker Compose for full stack
-├── Dockerfile                        # Frontend Docker image
-├── index.html                        # HTML entry point
-├── package.json                      # Frontend dependencies & scripts
-├── quasar.config.ts                  # Quasar framework configuration
-└── tsconfig.json                     # TypeScript configuration
+└── README.md
 ```
 
 ---

@@ -28,18 +28,44 @@ const CORS_ORIGINS = [
   'http://localhost:9000',
   'http://localhost:9001',
   'http://127.0.0.1:9000',
-  'http://127.0.0.1:9001'
+  'http://127.0.0.1:9001',
+  'https://gigs-galaxy.vercel.app',  // Add your Vercel domain
+  /\.vercel\.app$/  // Allow all Vercel preview deployments
 ]
 
 app.use(
   cors({
-    origin: CORS_ORIGINS,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, Postman, etc.)
+      if (!origin) return callback(null, true)
+      
+      // Check if origin is in the allowed list
+      if (CORS_ORIGINS.includes(origin)) {
+        return callback(null, true)
+      }
+      
+      // Check if origin matches Vercel domain pattern
+      if (CORS_ORIGINS.some(allowed => allowed instanceof RegExp && allowed.test(origin))) {
+        return callback(null, true)
+      }
+      
+      callback(new Error('Not allowed by CORS'))
+    },
     credentials: true
   })
 )
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')))
+
+// Health check endpoint
+app.get('/health', (req: Request, res: Response) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() })
+})
+
+app.get(`${API_BASE_PATH}/health`, (req: Request, res: Response) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() })
+})
 
 app.use(`${API_BASE_PATH}/auth`, authRoutes)
 app.use(`${API_BASE_PATH}/gigs`, gigRoutes)

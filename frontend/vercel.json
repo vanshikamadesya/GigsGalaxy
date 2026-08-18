@@ -1,7 +1,7 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist/spa",
-  "framework": null,
+  "framework": "other",
   "installCommand": "npm install",
   "rewrites": [
     {
